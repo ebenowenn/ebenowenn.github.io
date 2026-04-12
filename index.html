@@ -15,7 +15,7 @@
   <meta name="twitter:image" content="https://ebenowen.github.io/thumbnail.jpg"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,8 +29,8 @@
       --accent:    #B85C2A;
       --accent-lt: #E8C5AE;
       --line:      rgba(28,26,23,0.10);
-      --font-display: 'Cormorant Garant', Georgia, serif;
-      --font-ui:      'Syne', sans-serif;
+      --font-display: 'Barlow Condensed', sans-serif;
+      --font-ui:      'Barlow', sans-serif;
       --max: 1100px;
       --gap: clamp(2rem, 5vw, 4rem);
     }
@@ -104,11 +104,12 @@
     }
     .nav-logo {
       font-family: var(--font-display);
-      font-size: 1.25rem;
+      font-size: 1.4rem;
       font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
       color: var(--ink);
       text-decoration: none;
-      letter-spacing: 0.02em;
     }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
@@ -220,20 +221,21 @@
     }
     .hero-name {
       font-family: var(--font-display);
-      font-size: clamp(3.5rem, 9vw, 8.5rem);
-      font-weight: 300;
-      line-height: 0.95;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.35em;
+      font-size: clamp(4.5rem, 11vw, 11rem);
+      font-weight: 700;
+      line-height: 0.92;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin-bottom: 0.4em;
     }
-    .hero-name em { font-style: italic; color: var(--accent); }
+    .hero-name em { font-style: normal; color: var(--accent); }
     .hero-subtitle {
-      font-family: var(--font-display);
-      font-size: clamp(1.1rem, 2.2vw, 1.7rem);
-      font-weight: 300;
+      font-family: var(--font-ui);
+      font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+      font-weight: 400;
       color: var(--ink-mid);
-      max-width: 520px;
-      line-height: 1.4;
+      max-width: 480px;
+      line-height: 1.6;
       margin-bottom: 2.5rem;
     }
     .hero-ctas {
@@ -298,10 +300,12 @@
     .about-stat { margin-bottom: 2rem; }
     .stat-num {
       font-family: var(--font-display);
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 300;
+      font-size: clamp(3rem, 5vw, 5rem);
+      font-weight: 700;
       color: var(--accent);
       line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
     }
     .stat-label {
       font-size: 0.72rem;
@@ -311,10 +315,10 @@
       margin-top: 0.25rem;
     }
     .about-bio {
-      font-family: var(--font-display);
-      font-size: clamp(1.1rem, 1.8vw, 1.45rem);
-      font-weight: 300;
-      line-height: 1.75;
+      font-family: var(--font-ui);
+      font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+      font-weight: 400;
+      line-height: 1.8;
       color: #2E2720;
       background: rgba(255,245,235,0.55);
       border-left: 3px solid var(--accent-lt);
@@ -420,9 +424,11 @@
     }
     .exp-role {
       font-family: var(--font-display);
-      font-size: clamp(1.1rem, 2vw, 1.5rem);
-      font-weight: 400;
-      line-height: 1.2;
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+      line-height: 1.1;
       margin-bottom: 0.75rem;
     }
     .exp-desc {
@@ -462,11 +468,12 @@
     .work-card:hover::before { transform: scaleX(1); }
     .work-number {
       font-family: var(--font-display);
-      font-size: 3.5rem;
-      font-weight: 300;
+      font-size: 4rem;
+      font-weight: 700;
       color: var(--accent-lt);
       line-height: 1;
       margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
     }
     .work-title { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.6rem; }
     .work-desc { font-size: 0.8rem; color: var(--ink-mid); line-height: 1.6; }
@@ -496,13 +503,15 @@
     #contact .section-label { color: var(--accent-lt); }
     .contact-headline {
       font-family: var(--font-display);
-      font-size: clamp(2.5rem, 6vw, 5.5rem);
-      font-weight: 300;
-      line-height: 1.1;
+      font-size: clamp(3rem, 7vw, 7rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 0.95;
       margin-bottom: 2.5rem;
-      max-width: 680px;
+      max-width: 780px;
     }
-    .contact-headline em { font-style: italic; color: var(--accent-lt); }
+    .contact-headline em { font-style: normal; color: var(--accent-lt); }
     .contact-links { display: flex; flex-wrap: wrap; gap: 1.5rem; }
     .contact-link {
       display: flex;
