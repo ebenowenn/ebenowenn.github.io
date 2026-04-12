@@ -900,7 +900,7 @@
         Let's build<br><em>something together.</em>
       </h2>
       <div class="contact-links reveal reveal-d2">
-        <a class="contact-link" href="mailto:ebenowenn@gmail.com">
+        <a class="contact-link" href="#" onclick="window.location='mai'+'lto:'+'ebenowenn'+'@'+'gmail.com'; return false;">
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M1 5l7 5 7-5" stroke="currentColor" stroke-width="1.4"/></svg>
           Email
         </a>
@@ -923,7 +923,7 @@
     </div>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Hamburger menu
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -958,9 +958,3 @@
           e.target.classList.add('visible');
           io.unobserve(e.target);
         }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
-    reveals.forEach(el => io.observe(el));
-
-    // Safety net: reveal everyth
