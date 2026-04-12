@@ -122,6 +122,55 @@
     }
     .nav-links a:hover { color: var(--accent); }
 
+    /* Mobile hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--ink);
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* Mobile nav drawer */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 58px; left: 0; right: 0;
+      background: rgba(247,244,239,0.98);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      z-index: 99;
+      padding: 1.5rem clamp(1.25rem, 5vw, 3rem);
+      flex-direction: column;
+      gap: 0;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      text-decoration: none;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--line);
+      transition: color 0.2s;
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--accent); }
+
     /* ── HERO ── */
     #hero {
       min-height: 100svh;
@@ -490,12 +539,52 @@
     }
     .footer-copy, .footer-location { font-size: 0.68rem; letter-spacing: 0.08em; }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 680px) {
-      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
-      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+    @media (max-width: 680px) {
+      /* Hide decorative letter and nav links */
       #hero::after { display: none; }
+      .nav-links { display: none; }
+
+      /* Hero — tighter, more readable */
+      #hero {
+        min-height: 100svh;
+        padding-bottom: 3rem;
+      }
+      .hero-tag { font-size: 0.6rem; }
+      .hero-name { font-size: clamp(3rem, 16vw, 4.5rem); line-height: 1; }
+      .hero-subtitle { font-size: 1.05rem; max-width: 100%; }
+      .hero-ctas { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+      .hero-scroll { display: none; }
+
+      /* About — stack vertically */
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .about-stat { margin-bottom: 1.25rem; }
+      .about-bio {
+        font-size: 1.05rem;
+        padding: 1.5rem 1.25rem 1.5rem 1.5rem;
+      }
+
+      /* Skills — single column */
+      .skills-grid { gap: 1px; }
+      .skill-card { flex: 0 0 100%; }
+
+      /* Experience — stack meta above body */
+      .exp-item { grid-template-columns: 1fr; gap: 0.4rem; padding: 1.5rem 0; }
+      .exp-role { font-size: 1.2rem; }
+
+      /* Notable work — single column */
+      .work-grid { grid-template-columns: 1fr; }
+
+      /* Contact headline */
+      .contact-headline { font-size: clamp(2rem, 10vw, 3.5rem); }
+
+      /* Showreel caption */
+      .showreel-caption { font-size: 0.85rem; }
+
+      /* Section padding */
+      section { padding: 2.5rem 0; }
     }
   </style>
 </head>
@@ -513,8 +602,21 @@
         <li><a href="#work">Work</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
+      <button class="nav-hamburger" id="menuBtn" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
+
+  <!-- Mobile nav drawer -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" class="mobile-nav-link">About</a>
+    <a href="#showreel" class="mobile-nav-link">Showreel</a>
+    <a href="#skills" class="mobile-nav-link">Skills</a>
+    <a href="#experience" class="mobile-nav-link">Experience</a>
+    <a href="#work" class="mobile-nav-link">Work</a>
+    <a href="#contact" class="mobile-nav-link">Contact</a>
+  </div>
 
   <!-- HERO -->
   <section id="hero">
@@ -798,7 +900,7 @@
         Let's build<br><em>something together.</em>
       </h2>
       <div class="contact-links reveal reveal-d2">
-        <a class="contact-link" href="/cdn-cgi/l/email-protection#553037303b3a22303b3b153238343c397b363a38">
+        <a class="contact-link" href="mailto:ebenowenn@gmail.com">
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M1 5l7 5 7-5" stroke="currentColor" stroke-width="1.4"/></svg>
           Email
         </a>
@@ -821,7 +923,21 @@
     </div>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
+    // Hamburger menu
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => {
+      menuBtn.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        menuBtn.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      });
+    });
+
     // Add js-ready class so animations only kick in when JS is confirmed working
     document.body.classList.add('js-ready');
 
