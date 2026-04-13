@@ -545,6 +545,13 @@
       transition: border-color 0.2s, color 0.2s;
     }
     .contact-link:hover { color: var(--accent-lt); border-color: var(--accent-lt); }
+    .contact-email-plain {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: rgba(247,244,239,0.65);
+      letter-spacing: 0.08em;
+    }
 
     /* ── FOOTER ── */
     footer {
@@ -932,10 +939,6 @@
         Let's build<br><em>something together.</em>
       </h2>
       <div class="contact-links reveal reveal-d2">
-        <a class="contact-link" href="#" onclick="window.location='mai'+'lto:'+'ebenowenn'+'@'+'gmail.com'; return false;">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M1 5l7 5 7-5" stroke="currentColor" stroke-width="1.4"/></svg>
-          Email
-        </a>
         <a class="contact-link" href="https://www.linkedin.com/in/eben-owen-532204a7" target="_blank" rel="noopener">
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M5 7v4M5 5v.5M8 11V8.5C8 7.67 8.67 7 9.5 7v0C10.33 7 11 7.67 11 8.5V11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
           LinkedIn
@@ -945,10 +948,9 @@
           Download CV
         </a>
       </div>
+      <p class="contact-email-plain reveal">ebenowenn@gmail.com</p>
     </div>
   </section>
-
-  <footer>
     <div class="footer-inner">
       <span class="footer-copy">© 2026 Eben Owen · All rights reserved</span>
       <span class="footer-location">London, SE1</span>
