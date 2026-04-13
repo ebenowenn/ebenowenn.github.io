@@ -948,7 +948,7 @@
           Download CV
         </a>
       </div>
-      <p class="contact-email-plain reveal"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d0b5b2b5bebfa7b5bebe90b7bdb1b9bcfeb3bfbd">[email&#160;protected]</a></p>
+      <p class="contact-email-plain reveal" id="emailDisplay"></p>
     </div>
   </section>
     <div class="footer-inner">
@@ -958,6 +958,13 @@
   </footer>
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Build email display — constructed at runtime only, nothing in HTML
+    (function() {
+      var a = 'ebeno'; var b = 'wenn'; var c = 'gma'; var d = 'il.com';
+      var el = document.getElementById('emailDisplay');
+      if (el) el.textContent = a + b + '\u0040' + c + d;
+    })();
+
     // Hamburger menu
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
