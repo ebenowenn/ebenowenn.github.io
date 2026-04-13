@@ -195,8 +195,9 @@
       z-index: 1;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: var(--gap) clamp(1.25rem, 5vw, 3rem);
+      justify-content: center;
+      align-items: flex-start;
+      padding: calc(var(--gap) * 2) clamp(1.25rem, 5vw, 3rem) var(--gap);
     }
     .hero-photo {
       position: relative;
@@ -210,14 +211,14 @@
       height: 105%;
       object-fit: cover;
       object-position: center top;
-      filter: grayscale(100%) contrast(1.05);
-      mix-blend-mode: multiply;
+      filter: grayscale(100%) contrast(0.9) brightness(1.1);
+      opacity: 0.55;
     }
     .hero-photo::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to right, var(--bg) 0%, transparent 25%);
+      background: linear-gradient(to right, var(--bg) 0%, rgba(247,244,239,0.4) 40%, transparent 70%);
       z-index: 1;
       pointer-events: none;
     }
@@ -232,6 +233,7 @@
       padding: 0.3em 0.8em;
       border-radius: 2px;
       margin-bottom: 1.75rem;
+      align-self: flex-start;
     }
     .hero-name {
       font-family: var(--font-display);
@@ -284,7 +286,7 @@
     .hero-scroll {
       position: absolute;
       bottom: 2.5rem;
-      left: clamp(1.25rem, 5vw, 3rem);
+      right: 2rem;
       writing-mode: vertical-rl;
       font-size: 0.62rem;
       letter-spacing: 0.18em;
@@ -647,7 +649,7 @@
 
   <!-- HERO -->
   <section id="hero">
-    <div class="container hero-content">
+    <div class="hero-content">
       <div class="hero-tag reveal">Available for new roles</div>
       <h1 class="hero-name reveal reveal-d1">
         Technical Post-Production<br><em>Ops</em>
