@@ -304,6 +304,60 @@
       background: var(--ink-light);
     }
 
+    /* ── CLIENT LOGOS ── */
+    .hero-logos {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(28,26,23,0.10);
+    }
+    .hero-logos-label {
+      display: block;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 0.85rem;
+    }
+    .hero-logos-strip {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .hero-logos-strip img {
+      height: 22px;
+      width: auto;
+      max-width: 80px;
+      object-fit: contain;
+      filter: grayscale(100%) opacity(0.28) contrast(1.3);
+      transition: filter 0.3s ease;
+    }
+    .hero-logos-strip img:hover { filter: grayscale(100%) opacity(0.5) contrast(1.3); }
+
+    .about-logos { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+    .about-logos-label {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 0.85rem;
+    }
+    .about-logos-strip {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .about-logos-strip img {
+      height: 20px;
+      width: auto;
+      max-width: 75px;
+      object-fit: contain;
+      filter: grayscale(100%) opacity(0.3) contrast(1.3);
+      transition: filter 0.3s ease;
+    }
+    .about-logos-strip img:hover { filter: grayscale(100%) opacity(0.55) contrast(1.3); }
+
     /* ── ABOUT ── */
     #about {
       background: linear-gradient(160deg, #FDF5EC 0%, #F7F0E6 60%, #F2EBE0 100%);
@@ -679,6 +733,13 @@
           Watch Showreel
         </a>
       </div>
+      <div class="hero-logos reveal reveal-d4">
+        <span class="hero-logos-label">Brands worked with</span>
+        <div class="hero-logos-strip">
+          <img src="logo-amazon.png" alt="Amazon"/>
+          <img src="logo-lego.png" alt="Lego"/>
+        </div>
+      </div>
     </div>
     <div class="hero-photo">
       <img src="photo.jpg" alt="Eben Owen"/>
@@ -703,6 +764,13 @@
           <div class="about-stat">
             <div class="stat-num">2</div>
             <div class="stat-label">Multi-brand Experience</div>
+          </div>
+          <div class="about-logos">
+            <div class="about-logos-label">Brands worked with</div>
+            <div class="about-logos-strip">
+              <img src="logo-amazon.png" alt="Amazon"/>
+              <img src="logo-lego.png" alt="Lego"/>
+            </div>
           </div>
         </div>
         <div class="about-bio reveal reveal-d2">
