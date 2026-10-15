@@ -550,6 +550,22 @@
     }
     .work-title { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.6rem; }
     .work-desc { font-size: 0.8rem; color: var(--ink-mid); line-height: 1.6; }
+    .work-previews { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 1.25rem; }
+    .work-preview { display: block; text-decoration: none; color: var(--ink-light); }
+    .work-preview img {
+      display: block; width: 100%; height: 96px;
+      object-fit: cover; object-position: top;
+      border: 1px solid var(--line);
+      filter: grayscale(100%) opacity(0.75);
+      transition: filter 0.25s, border-color 0.25s;
+    }
+    .work-preview:hover img { filter: none; border-color: var(--accent); }
+    .work-preview span {
+      display: block; margin-top: 0.4rem;
+      font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase;
+      transition: color 0.25s;
+    }
+    .work-preview:hover span { color: var(--accent); }
     .work-cta {
       margin-top: 2rem;
       display: flex;
@@ -1026,7 +1042,17 @@
         <div class="work-card reveal reveal-d3">
           <div class="work-number">04</div>
           <div class="work-title">Quits &amp; Vetta</div>
-          <p class="work-desc">Two software products taken from idea to launch using AI-assisted development: Quits, an invoicing app for creative freelancers, and Vetta, a tenant vetting and matching platform for landlords.</p>
+          <p class="work-desc">Two software products taken from idea to launch using AI-assisted development: Quits, an invoicing app for creative freelancers, and Vetta, a property management platform for London landlords.</p>
+          <div class="work-previews">
+            <a class="work-preview" href="https://getquits.uk" target="_blank" rel="noopener">
+              <img src="preview-quits.jpg" alt="Quits homepage" loading="lazy"/>
+              <span>getquits.uk ↗</span>
+            </a>
+            <a class="work-preview" href="https://roommatch.me" target="_blank" rel="noopener">
+              <img src="preview-vetta.jpg" alt="Vetta homepage" loading="lazy"/>
+              <span>roommatch.me ↗</span>
+            </a>
+          </div>
         </div>
 
       </div>
