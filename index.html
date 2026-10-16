@@ -601,6 +601,86 @@
     }
     .exp-highlights { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
 
+    /* ── TESTIMONIALS ── */
+    #testimonials { background: var(--bg); }
+    .pq { position: relative; }
+    .pq-stage { display: grid; }
+    .pq-slide {
+      grid-area: 1 / 1;
+      margin: 0;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      pointer-events: none;
+    }
+    .pq-slide.is-active { opacity: 1; transform: none; pointer-events: auto; }
+    .pq-text {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 4.2vw, 3.4rem);
+      font-weight: 600;
+      line-height: 1.08;
+      letter-spacing: -0.005em;
+      text-transform: uppercase;
+      color: var(--ink);
+      max-width: 22ch;
+    }
+    .pq-text em { font-style: normal; color: var(--accent); }
+    .pq-cite {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 1.75rem;
+    }
+    .pq-name {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+    .pq-role { font-size: 0.75rem; color: var(--ink-light); }
+    .pq-bar {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--line);
+    }
+    .pq-count {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--ink-light);
+    }
+    .pq-count b { color: var(--accent); font-weight: 600; }
+    .pq-nav { display: flex; gap: 0.5rem; margin-left: auto; }
+    .pq-btn {
+      width: 40px; height: 40px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--ink);
+      border-radius: 50%;
+      cursor: pointer;
+      display: grid; place-items: center;
+      transition: border-color 0.25s, color 0.25s;
+    }
+    .pq-btn:hover, .pq-btn:focus-visible { border-color: var(--accent); color: var(--accent); outline: none; }
+    .pq-progress { flex: 1; height: 1px; background: var(--line); position: relative; overflow: hidden; max-width: 220px; }
+    .pq-progress span { position: absolute; inset: 0; background: var(--accent); transform-origin: left; transform: scaleX(0); }
+    .pq-progress span.run { animation: pqfill var(--pq-ms, 7000ms) linear forwards; }
+    .pq.paused .pq-progress span.run { animation-play-state: paused; }
+    @keyframes pqfill { to { transform: scaleX(1); } }
+    .pq-source { font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); }
+    .pq-source a { color: var(--ink-mid); }
+    .pq-source a:hover { color: var(--accent); }
+    @media (prefers-reduced-motion: reduce) {
+      .pq-slide { transition: none; transform: none; }
+      .pq-progress { display: none; }
+    }
+
     /* ── NOTABLE WORK ── */
     #work { background: var(--bg-card); }
     .work-grid {
@@ -1158,6 +1238,46 @@
     </div>
   </section>
 
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="container">
+      <p class="section-label reveal">What People Say</p>
+      <div class="pq reveal reveal-d1" id="pq" aria-roledescription="carousel" aria-label="Recommendations">
+        <div class="pq-stage" aria-live="polite">
+          <figure class="pq-slide is-active" aria-hidden="false">
+            <blockquote class="pq-text">His incredible eye for detail has <em>saved the day on countless occasions</em>.</blockquote>
+            <figcaption class="pq-cite"><span class="pq-name">Colin Hannan</span><span class="pq-role">Freelance Senior Editor</span></figcaption>
+          </figure>
+          <figure class="pq-slide" aria-hidden="true">
+            <blockquote class="pq-text">He doesn’t just complete tasks, he actively looks for ways to <em>improve workflows and streamline processes</em>…</blockquote>
+            <figcaption class="pq-cite"><span class="pq-name">Duncan Cross</span><span class="pq-role">Senior Creative Programme Manager, Amazon</span></figcaption>
+          </figure>
+          <figure class="pq-slide" aria-hidden="true">
+            <blockquote class="pq-text">…there’s few people as <em>dedicated, thorough, hard working and passionate</em> about the work as Eben.</blockquote>
+            <figcaption class="pq-cite"><span class="pq-name">Christian Rye</span><span class="pq-role">Content Studio Lead · managed Eben directly</span></figcaption>
+          </figure>
+          <figure class="pq-slide" aria-hidden="true">
+            <blockquote class="pq-text">Anyone who is lucky to work with him is <em>in very good hands</em>.</blockquote>
+            <figcaption class="pq-cite"><span class="pq-name">Samantha Furtado</span><span class="pq-role">Global Project Director</span></figcaption>
+          </figure>
+        </div>
+        <div class="pq-bar">
+          <span class="pq-count"><b id="pqNow">01</b> / 04</span>
+          <div class="pq-progress" aria-hidden="true"><span id="pqProg"></span></div>
+          <div class="pq-nav">
+            <button class="pq-btn" id="pqPrev" type="button" aria-label="Previous quote">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="pq-btn" id="pqNext" type="button" aria-label="Next quote">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+        <p class="pq-source" style="margin-top:1.25rem">From recommendations on <a href="https://www.linkedin.com/in/eben-owen-532204a7" target="_blank" rel="noopener">LinkedIn</a></p>
+      </div>
+    </div>
+  </section>
+
   <!-- CONTACT -->
   <section id="contact">
     <div class="container">
@@ -1192,6 +1312,51 @@
       var a = 'eb'; var b = 'en'; var c = 'ebenowen'; var d = '.com';
       var el = document.getElementById('emailDisplay');
       if (el) el.textContent = a + b + '\u0040' + c + d;
+    })();
+
+    // Rotating pull quotes
+    (function() {
+      const root = document.getElementById('pq');
+      if (!root) return;
+      const slides = [...root.querySelectorAll('.pq-slide')];
+      const now = document.getElementById('pqNow');
+      const prog = document.getElementById('pqProg');
+      const MS = 7000;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      root.style.setProperty('--pq-ms', MS + 'ms');
+      let i = 0, timer = null, paused = false;
+      const show = n => {
+        i = (n + slides.length) % slides.length;
+        slides.forEach((el, k) => {
+          el.classList.toggle('is-active', k === i);
+          el.setAttribute('aria-hidden', k === i ? 'false' : 'true');
+        });
+        now.textContent = String(i + 1).padStart(2, '0');
+        restart();
+      };
+      const restart = () => {
+        clearTimeout(timer);
+        prog.classList.remove('run'); void prog.offsetWidth;
+        if (reduce || paused) return;
+        prog.classList.add('run');
+        timer = setTimeout(() => show(i + 1), MS);
+      };
+      const setPaused = v => { paused = v; root.classList.toggle('paused', v); if (!v) restart(); else clearTimeout(timer); };
+      document.getElementById('pqPrev').addEventListener('click', () => show(i - 1));
+      document.getElementById('pqNext').addEventListener('click', () => show(i + 1));
+      root.addEventListener('mouseenter', () => setPaused(true));
+      root.addEventListener('mouseleave', () => setPaused(false));
+      root.addEventListener('focusin', () => setPaused(true));
+      root.addEventListener('focusout', () => setPaused(false));
+      let x0 = null;
+      root.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+      root.addEventListener('touchend', e => {
+        if (x0 === null) return;
+        const dx = e.changedTouches[0].clientX - x0; x0 = null;
+        if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1));
+      });
+      // Only rotate while the section is on screen
+      new IntersectionObserver(([e]) => setPaused(!e.isIntersecting), { threshold: 0.3 }).observe(root);
     })();
 
     // Shrink nav on scroll
