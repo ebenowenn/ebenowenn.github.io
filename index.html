@@ -606,7 +606,7 @@
 
     /* ── TESTIMONIALS ── */
     #testimonials { background: var(--bg); }
-    .pq { position: relative; }
+    .pq { position: relative; max-width: 860px; }
     .pq-stage { display: grid; }
     .pq-slide {
       grid-area: 1 / 1;
@@ -625,7 +625,6 @@
       letter-spacing: -0.005em;
       text-transform: uppercase;
       color: var(--ink);
-      max-width: 22ch;
     }
     .pq-text em { font-style: normal; color: var(--accent); }
     .pq-cite {
@@ -647,7 +646,7 @@
       display: flex;
       align-items: center;
       gap: 1.25rem;
-      margin-top: 2.5rem;
+      margin-top: 1.75rem;
       padding-top: 1.25rem;
       border-top: 1px solid var(--line);
     }
@@ -671,7 +670,7 @@
       transition: border-color 0.25s, color 0.25s;
     }
     .pq-btn:hover, .pq-btn:focus-visible { border-color: var(--accent); color: var(--accent); outline: none; }
-    .pq-progress { flex: 1; height: 1px; background: var(--line); position: relative; overflow: hidden; max-width: 220px; }
+    .pq-progress { flex: 1; height: 1px; background: var(--line); position: relative; overflow: hidden; max-width: 160px; }
     .pq-progress span { position: absolute; inset: 0; background: var(--accent); transform-origin: left; transform: scaleX(0); }
     .pq-progress span.run { animation: pqfill var(--pq-ms, 7000ms) linear forwards; }
     .pq.paused .pq-progress span.run { animation-play-state: paused; }
