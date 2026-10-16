@@ -729,6 +729,8 @@
       transition: filter 0.25s, border-color 0.25s;
     }
     .work-preview:hover img { filter: none; border-color: var(--accent); }
+    .work-previews.single { grid-template-columns: 1fr; }
+    .work-previews.single img { height: 120px; }
     .work-preview span {
       display: block; margin-top: 0.4rem;
       font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase;
@@ -1213,18 +1215,32 @@
 
         <div class="work-card reveal reveal-d3">
           <div class="work-number">04</div>
-          <div class="work-title">Quits &amp; Vetta</div>
-          <p class="work-desc">Two software products taken from idea to launch using AI-assisted development: Quits, an invoicing app for creative freelancers, and Vetta, a property management platform for London landlords.</p>
-          <div class="work-previews">
+          <div class="work-title">Quits</div>
+          <p class="work-desc">An invoicing app for freelancers, trades and creatives, taken from idea to launch using AI-assisted development. Send an invoice in two minutes and get paid by bank transfer with zero fees.</p>
+          <div class="work-previews single">
             <a class="work-preview" href="https://getquits.uk" target="_blank" rel="noopener">
               <img src="preview-quits.jpg" alt="Quits homepage" loading="lazy"/>
               <span>getquits.uk ↗</span>
             </a>
+          </div>
+        </div>
+
+        <div class="work-card reveal reveal-d1">
+          <div class="work-number">05</div>
+          <div class="work-title">Vetta</div>
+          <p class="work-desc">A property and HMO management platform for London landlords, bringing enquiries, tenant vetting, tenancy contracts and compliance dates into one place. Built using AI-assisted development.</p>
+          <div class="work-previews single">
             <a class="work-preview" href="https://roommatch.me" target="_blank" rel="noopener">
               <img src="preview-vetta.jpg" alt="Vetta homepage" loading="lazy"/>
               <span>roommatch.me ↗</span>
             </a>
           </div>
+        </div>
+
+        <div class="work-card reveal reveal-d2">
+          <div class="work-number">06</div>
+          <div class="work-title">QC How-To Guides</div>
+          <p class="work-desc">Step-by-step how-to documentation in Confluence for the QC ingest workflow at Flawless AI, written so the process was clear and easy for the team to follow.</p>
         </div>
 
       </div>
