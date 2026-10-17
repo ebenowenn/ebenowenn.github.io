@@ -99,7 +99,7 @@
       font-size: clamp(14px, 1.05vw, 16px);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
+      overflow-x: clip;
     }
 
     /* Reveal — visible by default, JS opt-in for animation */
@@ -683,6 +683,47 @@
       .pq-progress { display: none; }
     }
 
+    /* ── EXPERIENCE SEQUENCE ── */
+    .seq { display: grid; grid-template-columns: 112px 1fr; }
+    .seq-rail { position: relative; }
+    .seq-rail::before { content: ''; position: absolute; left: 5px; top: 0; bottom: 0; width: 1px; background: var(--line); }
+    .seq-fill { position: absolute; left: 5px; top: 0; width: 1px; height: 0; background: var(--accent); }
+    .seq-ph { position: absolute; left: 0; top: 0; transform: translateY(-50%); display: flex; align-items: center; gap: 8px; }
+    .seq-ph i { width: 11px; height: 11px; background: var(--accent); clip-path: polygon(0 0,100% 0,100% 60%,50% 100%,0 60%); transform: rotate(-90deg); }
+    .seq-ph span { font-family: var(--font-display); font-size: 0.95rem; font-weight: 600; letter-spacing: 0.05em; color: var(--accent); font-variant-numeric: tabular-nums; }
+    .seq-row { padding: 2.25rem 0; border-top: 1px solid var(--line); opacity: 0.38; transition: opacity 0.5s ease; }
+    .seq-row:last-child { border-bottom: 1px solid var(--line); }
+    .seq-row.played { opacity: 1; }
+    .seq-lane { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.1rem; }
+    .seq-trk { font-family: var(--font-display); font-size: 0.7rem; font-weight: 600; color: var(--ink-light); width: 18px; }
+    .seq-bed { position: relative; flex: 1; height: 20px; background: rgba(28,26,23,0.04); border-radius: 3px; }
+    .seq-clip {
+      position: absolute; top: 0; bottom: 0; min-width: 6px; border-radius: 3px;
+      display: flex; align-items: center; padding: 0 6px; overflow: hidden; white-space: nowrap;
+      font: 600 0.62rem/1 var(--font-ui); letter-spacing: 0.02em;
+      transform: scaleX(0); transform-origin: left center;
+      transition: transform 0.7s cubic-bezier(.2,.8,.2,1) calc(var(--i) * 0.12s);
+      box-shadow: inset -1px 0 0 rgba(255,255,255,0.35);
+    }
+    .seq-clip b { font-weight: 600; overflow: hidden; text-overflow: ellipsis; }
+    .seq-clip.tiny b { display: none; }
+    .seq-row.in .seq-clip { transform: none; }
+    .seq-v1 { background: var(--accent); color: #fff; }
+    .seq-v2 { background: #7A746A; color: #fff; }
+    .seq-a1 { background: #3E5C54; color: #DDEBE6; background-image: repeating-linear-gradient(90deg, rgba(221,235,230,0.35) 0 2px, transparent 2px 5px); background-size: 100% 35%; background-repeat: no-repeat; background-position: 0 90%; }
+    .seq-ghost { border: 1px dashed var(--accent); color: var(--accent); background: transparent; text-decoration: none; box-shadow: none; }
+    .seq-next-link { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); text-decoration: none; }
+    .seq-next-link:hover { text-decoration: underline; }
+    @media (max-width: 680px) {
+      .seq { grid-template-columns: 70px 1fr; }
+      .seq-ph span { font-size: 0.78rem; }
+      .seq-row { padding: 1.75rem 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .seq-clip { transition: none; transform: none; }
+      .seq-row { transition: none; }
+    }
+
     /* ── NOTABLE WORK ── */
     #work { background: var(--bg-card); }
     .work-grid {
@@ -1096,97 +1137,86 @@
   <section id="experience">
     <div class="container">
       <p class="section-label reveal">Experience</p>
-      <div class="exp-list">
-
-        <div class="exp-item reveal">
-          <div class="exp-meta">
-            <div class="exp-period">Jul 2026 – Oct 2026</div>
-            <div class="exp-company">Flawless AI</div>
-          </div>
-          <div class="exp-body">
-            <div class="exp-role">QC/IO Specialist</div>
-            <p class="exp-desc">
+      <div class="seq" id="seq" data-start="2018.6667" data-now="2026.79">
+        <div class="seq-rail" aria-hidden="true">
+          <div class="seq-fill" id="seqFill"></div>
+          <div class="seq-ph" id="seqPh"><i></i><span id="seqTc">2026:10</span></div>
+        </div>
+        <div class="seq-rows">
+        <article class="seq-row" data-s="2026.79">
+          <div class="seq-lane"><span class="seq-trk">V1</span><div class="seq-bed"><span class="seq-clip seq-v1" style="left:89.523%;width:3.314%;--i:0" title="Flawless AI"><b>Flawless AI</b></span></div></div>
+          <div class="exp-period">Jul 2026 – Oct 2026</div>
+          <div class="exp-company">Flawless AI</div>
+          <h3 class="exp-role">QC/IO Specialist</h3>
+          <p class="exp-desc">
               Brought in on contract to own quality control at the front of the pipeline, making sure every piece of incoming media was right before it reached the production team.<br>
               — Led the QC ingest process, checking all incoming media against technical and visual standards.<br>
               — Trained colleagues on QC and ingest workflows, building consistency across the team.<br>
-              — Wrote the team's QC documentation and how-to guides in Confluence, turning know-how into a repeatable process.
-            </p>
-            <div class="exp-highlights">
-              <span class="tag">QC Ingest</span>
-              <span class="tag">Team Training</span>
-              <span class="tag">Documentation</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="exp-item reveal reveal-d1">
-          <div class="exp-meta">
-            <div class="exp-period">Jan 2022 – Apr 2026</div>
-            <div class="exp-company">Omnicom Production (formerly eg+ worldwide)</div>
-          </div>
-          <div class="exp-body">
-            <div class="exp-role">Edit Assistant / QC Analyst</div>
-            <p class="exp-desc">
+              — Wrote the team’s QC documentation and how-to guides in Confluence, turning know-how into a repeatable process.
+          </p>
+          <div class="exp-highlights"><span class="tag">QC Ingest</span><span class="tag">Team Training</span><span class="tag">Documentation</span></div>
+        </article>
+        <article class="seq-row" data-s="2026.79">
+          <div class="seq-lane"><span class="seq-trk">V2</span><div class="seq-bed"><span class="seq-clip seq-v2" style="left:86.666%;width:6.171%;--i:0" title="Freelance"><b>Freelance</b></span></div></div>
+          <div class="exp-period">Apr 2026 – Present</div>
+          <div class="exp-company">Freelance</div>
+          <h3 class="exp-role">Edit Assist · Production · Videography</h3>
+          <p class="exp-desc">
+              Short-form social and corporate content, including social content for F1 driver training company PAP.
+          </p>
+          <div class="exp-highlights"><span class="tag">Social</span><span class="tag">Corporate</span><span class="tag">Production</span></div>
+        </article>
+        <article class="seq-row" data-s="2026.3333">
+          <div class="seq-lane"><span class="seq-trk">V1</span><div class="seq-bed"><span class="seq-clip seq-v1" style="left:38.095%;width:14.286%;--i:0" title="Junior EA"><b>Junior EA</b></span><span class="seq-clip seq-v1" style="left:52.381%;width:18.095%;--i:1" title="Edit Assistant"><b>Edit Assistant</b></span><span class="seq-clip seq-v1" style="left:70.475%;width:17.143%;--i:2" title="Omnicom"><b>Omnicom</b></span></div></div>
+          <div class="exp-period">Jan 2022 – Apr 2026</div>
+          <div class="exp-company">Omnicom Production (formerly eg+ worldwide)</div>
+          <h3 class="exp-role">Edit Assistant (QC &amp; Delivery)</h3>
+          <p class="exp-desc">
               Grew from Junior Edit Assistant to leading QC and asset delivery across hundreds of multi-market campaigns for Amazon, LEGO, Mars, Kenvue and other global brands.<br>
               — Led QC and delivery across broadcast, CTV, OLV, social, VOD and DOOH, catching wrong specs, unclean masters and title safety breaches before they cost money.<br>
               — Managed end-to-end encoding and delivery through Telestream Vantage, Adstream, Peach, Clearcast, DCM and Pearl &amp; Dean.<br>
               — Ran media plan QC on OpenDoor XCM campaigns across European markets and PSE compliance via HardingFPA.<br>
               — Independently designed and deployed three AI agents on Omni AI: a compliance report processor, a media plan research tool and a campaign email workflow.
-            </p>
-            <div class="exp-highlights">
-              <span class="tag">Amazon</span>
-              <span class="tag">LEGO</span>
-              <span class="tag">Broadcast Delivery</span>
-              <span class="tag">AI Tool Development</span>
-              <span class="tag">European Markets</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="exp-item reveal reveal-d2">
-          <div class="exp-meta">
-            <div class="exp-period">Jun 2021 – Nov 2021</div>
-            <div class="exp-company">The Picture Production Company</div>
-          </div>
-          <div class="exp-body">
-            <div class="exp-role">Junior Online Editor</div>
-            <p class="exp-desc">
+          </p>
+          <div class="exp-highlights"><span class="tag">Amazon</span><span class="tag">LEGO</span><span class="tag">Broadcast Delivery</span><span class="tag">AI Tool Development</span></div>
+        </article>
+        <article class="seq-row" data-s="2021.9167">
+          <div class="seq-lane"><span class="seq-trk">V1</span><div class="seq-bed"><span class="seq-clip seq-v1" style="left:31.429%;width:5.714%;--i:0" title="Picture Production"><b>Picture Production</b></span></div></div>
+          <div class="exp-period">Jun 2021 – Nov 2021</div>
+          <div class="exp-company">The Picture Production Company</div>
+          <h3 class="exp-role">Junior Online Editor</h3>
+          <p class="exp-desc">
               Cut and finished film trailers and TV spots to broadcast standard for Viacom, Paramount and Universal.<br>
-              — QC'd and conformed assets from sound, offline and graphics.<br>
+              — QC’d and conformed assets from sound, offline and graphics.<br>
               — Created subtitles and localised versions for multiple territories.<br>
               — Ran the final pre-delivery check so every sequence left with all media in place.
-            </p>
-            <div class="exp-highlights">
-              <span class="tag">Broadcast Editing</span>
-              <span class="tag">Localisation</span>
-              <span class="tag">QC</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="exp-item reveal reveal-d3">
-          <div class="exp-meta">
-            <div class="exp-period">2020 – Present</div>
-            <div class="exp-company">Freelance</div>
-          </div>
-          <div class="exp-body">
-            <div class="exp-role">Camera, Edit &amp; Production</div>
-            <p class="exp-desc">
-              Camera, lighting, edit and production work across drama, film, social and corporate content.<br>
-              — Hollington Drive (ITV): lighting trainee on the drama's nine-week shoot.<br>
+          </p>
+          <div class="exp-highlights"><span class="tag">Broadcast Editing</span><span class="tag">Localisation</span><span class="tag">QC</span></div>
+        </article>
+        <article class="seq-row" data-s="2021.5">
+          <div class="seq-lane"><span class="seq-trk">V2</span><div class="seq-bed"><span class="seq-clip seq-v2" style="left:20.952%;width:1.905%;--i:0" title="La Cha Cha"><b>La Cha Cha</b></span><span class="seq-clip seq-v2" style="left:25.714%;width:0.952%;--i:1" title="Home"><b>Home</b></span><span class="seq-clip seq-v2" style="left:30.475%;width:1.905%;--i:2" title="Hollington Drive"><b>Hollington Drive</b></span></div></div>
+          <div class="exp-period">2020 – 2021</div>
+          <div class="exp-company">Freelance · Film &amp; TV</div>
+          <h3 class="exp-role">Camera, Lighting &amp; Data</h3>
+          <p class="exp-desc">
+              Camera and lighting work on drama and film.<br>
+              — Hollington Drive (ITV): lighting trainee on the drama’s nine-week shoot.<br>
               — Home (award-winning short film): camera assistant, drone operator and data wrangler.<br>
-              — La Cha Cha (feature film): camera assistant, audio sync and data wrangler.<br>
-              — Ongoing short-form social and corporate content, including social content for F1 driver training company PAP.
-            </p>
-            <div class="exp-highlights">
-              <span class="tag">ITV</span>
-              <span class="tag">Camera</span>
-              <span class="tag">Drone</span>
-              <span class="tag">Data Wrangling</span>
-            </div>
-          </div>
+              — La Cha Cha (feature film): camera assistant, audio sync and data wrangler.
+          </p>
+          <div class="exp-highlights"><span class="tag">ITV</span><span class="tag">Camera</span><span class="tag">Drone</span><span class="tag">Data Wrangling</span></div>
+        </article>
+        <article class="seq-row" data-s="2021.5">
+          <div class="seq-lane"><span class="seq-trk">A1</span><div class="seq-bed"><span class="seq-clip seq-a1" style="left:0.000%;width:32.381%;--i:0" title="BA Media Production"><b>BA Media Production</b></span></div></div>
+          <div class="exp-period">2018 – 2021</div>
+          <div class="exp-company">University of South Wales</div>
+          <h3 class="exp-role">BA (Hons) Media Production</h3>
+          <p class="exp-desc">
+              First Class degree covering camera, editing, sound and post-production workflows.
+          </p>
+          <div class="exp-highlights"><span class="tag">First Class</span><span class="tag">Film</span><span class="tag">Post-Production</span></div>
+        </article>
         </div>
-
       </div>
     </div>
   </section>
@@ -1391,6 +1421,42 @@
       });
       // Only rotate while the section is on screen
       new IntersectionObserver(([e]) => setPaused(!e.isIntersecting), { threshold: 0.3 }).observe(root);
+    })();
+
+    // Experience sequence: a playhead runs down the jobs as you scroll
+    (function() {
+      const seq = document.getElementById('seq');
+      if (!seq) return;
+      const rows = [...seq.querySelectorAll('.seq-row')];
+      const fill = document.getElementById('seqFill'), ph = document.getElementById('seqPh'), tc = document.getElementById('seqTc');
+      const START = +seq.dataset.start, NOW = +seq.dataset.now;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const fmt = t => {
+        const y = Math.floor(t), mo = Math.min(11, Math.floor((t - y) * 12));
+        return y + ':' + String(mo + 1).padStart(2, '0');
+      };
+      const update = () => {
+        const box = seq.getBoundingClientRect();
+        const y = Math.max(0, Math.min(box.height, window.innerHeight * 0.55 - box.top));
+        fill.style.height = y + 'px';
+        ph.style.top = y + 'px';
+        const tops = rows.map(r => r.getBoundingClientRect().top - box.top);
+        let i = 0;
+        while (i < rows.length - 1 && tops[i + 1] <= y) i++;
+        const a = +rows[i].dataset.s, b = i < rows.length - 1 ? +rows[i + 1].dataset.s : START;
+        const span = (i < rows.length - 1 ? tops[i + 1] : box.height) - tops[i];
+        const f = span > 0 ? Math.max(0, Math.min(1, (y - tops[i]) / span)) : 0;
+        tc.textContent = fmt(Math.max(START, Math.min(NOW, a + (b - a) * f)));
+        rows.forEach((r, k) => r.classList.toggle('played', reduce || tops[k] <= y + 40));
+      };
+      const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.25 });
+      rows.forEach(r => reduce ? r.classList.add('in') : io.observe(r));
+      window.addEventListener('scroll', update, { passive: true });
+      const clips = [...seq.querySelectorAll('.seq-clip')];
+      const sizeLabels = () => clips.forEach(c => c.classList.toggle('tiny', c.offsetWidth < 44));
+      window.addEventListener('resize', () => { sizeLabels(); update(); });
+      sizeLabels();
+      update();
     })();
 
     // Shrink nav on scroll
